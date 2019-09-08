@@ -34,6 +34,14 @@ example(of: "subscribe") {
     })
 }
 
+example(of: "empty") {
+    let observable = Observable<Void>.empty()
+    
+    observable.subscribe({ (event) in
+        print(event)
+    })
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
