@@ -3,8 +3,12 @@ import RxSwift
 
 example(of: "never") {
   let observable = Observable<Any>.never()
+  let bag = DisposeBag()
   
   observable
+    .do(onSubscribed: {
+        print("subscribed")
+    })
     .subscribe(
       onNext: { element in
         print(element)
@@ -16,6 +20,7 @@ example(of: "never") {
         print("Disposed")
       }
     )
+    .disposed(by: bag)
 }
 
 /*:
