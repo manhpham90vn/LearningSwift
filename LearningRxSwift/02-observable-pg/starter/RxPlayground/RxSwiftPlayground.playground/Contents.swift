@@ -60,6 +60,16 @@ example(of: "range") {
     })
 }
 
+example(of: "dispose") {
+    let observable = Observable.of(1, 2, 3)
+    
+    let subscription = observable.subscribe({ (event) in
+        print(event)
+    })
+    
+    subscription.dispose()
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
