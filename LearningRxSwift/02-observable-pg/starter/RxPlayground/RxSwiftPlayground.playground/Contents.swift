@@ -1,7 +1,17 @@
 import Foundation
 import RxSwift
 
-
+example(of: "just, of, from") {
+    
+    let one = 1
+    let two = 2
+    let three = 3
+    
+    let observable = Observable<Int>.just(one)
+    let observable2 = Observable.of(one, two, three)
+    let observable3 = Observable.of([one, two, three])
+    let observable4 = Observable.from([one, two, three])
+}
 
 /*:
  Copyright (c) 2019 Razeware LLC
