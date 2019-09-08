@@ -122,6 +122,46 @@ example(of: "deferred") {
     }
 }
 
+example(of: "Single") {
+    let bag = DisposeBag()
+    
+    enum FileReadError: Error {
+        case fileNotFound
+        case unreadable
+        case encodingFailed
+    }
+    
+    func loadText(from name: String) -> Single<String> {
+        return Single.create(subscribe: { (single) -> Disposable in
+            let disposable = Disposables.create()
+            
+            guard let path = Bundle.main.path(forResource: name, ofType: "txt") else {
+                single(.error(FileReadError.fileNotFound))
+                return disposable
+            }
+            
+            guard let data = FileManager.default.contents(atPath: path) else {
+                single(.error(FileReadError.unreadable))
+                return disposable
+            }
+            
+            guard let contents = String(data: data, encoding: .utf8) else {
+                single(.error(FileReadError.encodingFailed))
+                return disposable
+            }
+            
+            single(.success(contents))
+            return disposable
+        })
+    }
+    
+    loadText(from: "Copyright")
+        .subscribe(onSuccess: { (element) in
+            print(element)
+        })
+    .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
