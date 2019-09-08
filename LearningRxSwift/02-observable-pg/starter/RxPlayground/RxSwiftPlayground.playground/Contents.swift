@@ -42,6 +42,14 @@ example(of: "empty") {
     })
 }
 
+example(of: "never") {
+    let observable = Observable<Any>.never()
+    
+    observable.subscribe({ (event) in
+        print(event)
+    })
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
