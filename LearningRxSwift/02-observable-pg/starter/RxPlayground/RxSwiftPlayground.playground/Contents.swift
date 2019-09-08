@@ -81,6 +81,25 @@ example(of: "disposeBag") {
     .disposed(by: bag)
 }
 
+example(of: "create") {
+    
+    enum MyError: Error {
+        case anError
+    }
+    
+    let bag = DisposeBag()
+    
+    Observable<String>.create({ (observer) -> Disposable in
+        observer.onNext("Manh")
+//        observer.onCompleted()
+        observer.onError(MyError.anError)
+        observer.onNext("Ngan")
+        return Disposables.create()
+    }).subscribe({ (event) in
+        print(event)
+    }).disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
