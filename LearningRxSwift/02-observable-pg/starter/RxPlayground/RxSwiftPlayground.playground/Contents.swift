@@ -70,6 +70,17 @@ example(of: "dispose") {
     subscription.dispose()
 }
 
+example(of: "disposeBag") {
+    
+    let bag = DisposeBag()
+    
+    let observable = Observable.of(1, 2, 3)
+    observable.subscribe({ (event) in
+        print(event)
+    })
+    .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
