@@ -18,6 +18,8 @@ DerivedData/
 xcuserdata/
 *.epub
 *.pdf
+Libs/
+*.log
 
 ## Other
 *.moved-aside
