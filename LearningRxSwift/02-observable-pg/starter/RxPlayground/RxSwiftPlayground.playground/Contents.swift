@@ -13,6 +13,27 @@ example(of: "just, of, from") {
     let observable4 = Observable.from([one, two, three])
 }
 
+example(of: "subscribe") {
+    let one = 1
+    let two = 2
+    let three = 3
+    
+    let observable = Observable.of(one, two, three)
+    observable.subscribe({ (event) in
+        print(event)
+    })
+    
+    observable.subscribe({ (event) in
+        if let element = event.element {
+            print(element)
+        }
+    })
+    
+    observable.subscribe(onNext: { (element) in
+        print(element)
+    })
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
