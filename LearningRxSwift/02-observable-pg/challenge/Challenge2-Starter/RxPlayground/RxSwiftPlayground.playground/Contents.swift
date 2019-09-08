@@ -6,6 +6,7 @@ example(of: "never") {
   let disposeBag = DisposeBag()
   
   observable
+    .debug()
     .do(onSubscribe: {
       print("Subscribed")
     })
