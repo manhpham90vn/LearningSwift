@@ -100,6 +100,28 @@ example(of: "create") {
     }).disposed(by: bag)
 }
 
+example(of: "deferred") {
+    let  bag = DisposeBag()
+    
+    var flip = false
+    
+    let factory: Observable<Int> = Observable.deferred({
+        flip.toggle()
+        
+        if flip {
+            return Observable.of(1, 2, 3)
+        } else {
+            return Observable.of(4, 5, 6)
+        }
+    })
+    
+    for _ in 0...3 {
+        factory.subscribe({ (event) in
+            print(event)
+        }).disposed(by: bag)
+    }
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
