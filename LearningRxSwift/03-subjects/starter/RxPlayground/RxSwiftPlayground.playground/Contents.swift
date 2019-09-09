@@ -78,6 +78,18 @@ example(of: "ReplaySubject") {
     subject.dispose()
 }
 
+example(of: "PublishReplay") {
+    let relay = PublishRelay<String>()
+    let bag = DisposeBag()
+    
+    relay.accept("Manh")
+    
+    relay.subscribe({ (event) in
+        print(event)
+    }).disposed(by: bag)
+    
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
