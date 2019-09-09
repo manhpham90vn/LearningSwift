@@ -90,6 +90,20 @@ example(of: "PublishReplay") {
     
 }
 
+example(of: "BehaviorReplay") {
+    let replay = BehaviorRelay<String>.init(value: "init")
+    let bag = DisposeBag()
+    
+    replay.subscribe({ (event) in
+        print(event)
+    }).disposed(by: bag)
+    
+    replay.accept("Manh")
+    
+    print(replay.value)
+    
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
