@@ -26,6 +26,32 @@ example(of: "PublishSubject") {
     subject.onNext("Em Gau")
 }
 
+enum MyError: Error {
+    case anError
+}
+
+func print<T: CustomStringConvertible>(label: String, event: Event<T>) {
+    print(label, (event.element ?? event.error) ?? event)
+}
+
+example(of: "BehaviorSubject") {
+    let subject = BehaviorSubject<String>.init(value: "test")
+    let bag = DisposeBag()
+    
+    subject.subscribe({ (event) in
+        print(event)
+    })
+    .disposed(by: bag)
+    
+    subject.onNext("Manh")
+    
+    subject.onError(MyError.anError)
+    
+    subject.subscribe({ (event) in
+        print("2)", event)
+    })
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
