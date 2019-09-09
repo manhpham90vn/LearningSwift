@@ -2,7 +2,29 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-
+example(of: "PublishSubject") {
+    
+    let subject = PublishSubject<String>()
+    
+    subject.onNext("Manh")
+    
+    let subscriptionOne = subject.subscribe({ (event) in
+        print(event)
+    })
+    
+    subject.on(.next("Ngan"))
+    subject.onNext("Minh Nhat")
+    
+    let subscriptionTwo = subject.subscribe({ (event) in
+        print("2)", event.element ?? event)
+    })
+    
+    subject.onNext("Gau")
+    
+    subject.onCompleted()
+    
+    subject.onNext("Em Gau")
+}
 
 /*:
  Copyright (c) 2019 Razeware LLC
