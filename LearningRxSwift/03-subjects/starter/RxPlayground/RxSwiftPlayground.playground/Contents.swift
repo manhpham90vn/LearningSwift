@@ -52,6 +52,32 @@ example(of: "BehaviorSubject") {
     })
 }
 
+example(of: "ReplaySubject") {
+    let subject = ReplaySubject<String>.create(bufferSize: 2)
+    let bag = DisposeBag()
+    
+    subject.on(.next("1"))
+    subject.onNext("2")
+    subject.onNext("3")
+    
+    subject.subscribe({ (event) in
+        print(label: "1)", event: event)
+    }).disposed(by: bag)
+    
+    subject.subscribe({ (event) in
+        print(label: "2)", event: event)
+    })
+    
+    subject.onNext("4")
+    
+    subject.subscribe({ (event) in
+        print(label: "3)", event: event)
+    })
+    
+    subject.onError(MyError.anError)
+    subject.dispose()
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
