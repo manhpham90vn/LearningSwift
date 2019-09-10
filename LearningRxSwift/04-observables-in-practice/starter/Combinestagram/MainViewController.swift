@@ -65,7 +65,6 @@ class MainViewController: UIViewController {
     guard let image = imagePreview.image else { return }
     PhotoWriter
       .save(image)
-      .asSingle()
       .subscribe(onSuccess: { [weak self] (element) in
         self?.showMessage("Saved with id \(element)")
         self?.actionClear()
