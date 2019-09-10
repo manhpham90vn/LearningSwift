@@ -32,6 +32,9 @@ import RxCocoa
 
 class MainViewController: UIViewController {
 
+  let bag = DisposeBag()
+  let images = BehaviorRelay<[UIImage]>.init(value: [])
+  
   @IBOutlet weak var imagePreview: UIImageView!
   @IBOutlet weak var buttonClear: UIButton!
   @IBOutlet weak var buttonSave: UIButton!
@@ -40,10 +43,22 @@ class MainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    images
+    .subscribe(onNext: { [weak self] (photos) in
+      self?.imagePreview.image = photos.collage(size: self?.imagePreview.frame.size ?? .zero)
+    })
+    .disposed(by: bag)
+    
+    images
+    .subscribe(onNext: { [weak self] (photos) in
+        self?.updateUI(photos: photos)
+      })
+    .disposed(by: bag)
+    
   }
   
   @IBAction func actionClear() {
-
+    images.accept([])
   }
 
   @IBAction func actionSave() {
@@ -52,8 +67,18 @@ class MainViewController: UIViewController {
 
   @IBAction func actionAdd() {
 
+    let newImages = images.value + [UIImage(named: "IMG_1907")!]
+    images.accept(newImages)
+    
   }
 
+  private func updateUI(photos: [UIImage]) {
+    buttonSave.isEnabled = photos.count > 0 && photos.count % 2 == 0
+    buttonClear.isEnabled = photos.count > 0
+    itemAdd.isEnabled = photos.count < 6
+    title = photos.count > 0 ? "\(photos.count) photos" : "Collage"
+  }
+  
   func showMessage(_ title: String, description: String? = nil) {
     let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { [weak self] _ in self?.dismiss(animated: true, completion: nil)}))
