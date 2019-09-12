@@ -138,6 +138,19 @@ example(of: "distincUntilChanged") {
         .disposed(by: bag)
 }
 
+example(of: "distinctUntilChanged(_:)") {
+    let bag = DisposeBag()
+    
+    Observable.of(1, 1, 2, 3, 4, 4, 5, 6)
+        .distinctUntilChanged({ (value1, value2) -> Bool in
+            value1 == value2
+        })
+        .subscribe({ (event) in
+            print(event)
+        })
+        .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
