@@ -107,6 +107,26 @@ example(of: "takeWhile") {
         .disposed(by: bag)
 }
 
+example(of: "takeUntil") {
+    let bag = DisposeBag()
+    
+    let subject = PublishSubject<String>()
+    let trigger = PublishSubject<String>()
+    
+    subject
+        .takeUntil(trigger)
+        .subscribe({ (event) in
+            print(event)
+        })
+        .disposed(by: bag)
+    
+    subject.onNext("Manh")
+    subject.onNext("Pham")
+    trigger.onNext("Test")
+    subject.onNext("Ngan")
+    subject.onNext("Ngan")
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
