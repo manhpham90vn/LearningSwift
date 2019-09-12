@@ -1,7 +1,19 @@
 import Foundation
 import RxSwift
 
-
+example(of: "ignoreElements") {
+    let subject = PublishSubject<String>()
+    let bag = DisposeBag()
+    
+    subject
+        .ignoreElements()
+        .subscribe({ (event) in
+        print(event)
+    }).disposed(by: bag)
+    
+    subject.onNext("Manh")
+    subject.onNext("Pham")
+}
 
 /*:
  Copyright (c) 2019 Razeware LLC
