@@ -53,6 +53,17 @@ example(of: "skip") {
         .disposed(by: bag)
 }
 
+example(of: "skipWhile") {
+    let bag = DisposeBag()
+    
+    Observable.of(1, 2, 3, 4 , 5, 6)
+        .skipWhile({ $0 % 2 != 0 })
+        .subscribe({ (event) in
+            print(event)
+        })
+        .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
