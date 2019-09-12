@@ -15,6 +15,22 @@ example(of: "ignoreElements") {
     subject.onNext("Pham")
 }
 
+example(of: "elementAt") {
+    let subject = PublishSubject<String>()
+    let bag = DisposeBag()
+    
+    subject
+        .elementAt(2)
+        .subscribe({ (event) in
+            print(event)
+        })
+        .disposed(by: bag)
+    
+    subject.onNext("Manh")
+    subject.onNext("Pham")
+    subject.onNext("Van")
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
