@@ -64,6 +64,26 @@ example(of: "skipWhile") {
         .disposed(by: bag)
 }
 
+example(of: "skipUntil") {
+    let bag = DisposeBag()
+    
+    let subject = PublishSubject<String>()
+    let trigger = PublishSubject<String>()
+    
+    subject
+        .skipUntil(trigger)
+        .subscribe({ (event) in
+            print(event)
+        })
+        .disposed(by: bag)
+    
+    subject.onNext("Manh")
+    subject.onNext("Pham")
+    trigger.onNext("Test")
+    subject.onNext("Ngan")
+    subject.onNext("Ngan")
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
