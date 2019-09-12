@@ -42,6 +42,17 @@ example(of: "filter") {
         .disposed(by: bag)
 }
 
+example(of: "skip") {
+    let bag = DisposeBag()
+    
+    Observable.of(1, 2, 3, 4 , 5, 6)
+        .skip(3)
+        .subscribe({ (event) in
+            print(event)
+        })
+        .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
