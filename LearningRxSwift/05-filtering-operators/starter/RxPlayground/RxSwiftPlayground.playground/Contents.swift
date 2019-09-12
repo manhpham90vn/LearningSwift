@@ -127,6 +127,17 @@ example(of: "takeUntil") {
     subject.onNext("Ngan")
 }
 
+example(of: "distincUntilChanged") {
+    let bag = DisposeBag()
+    
+    Observable.of(1, 1, 2, 3, 4, 4, 5, 6)
+        .distinctUntilChanged()
+        .subscribe({ (event) in
+            print(event)
+        })
+        .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
