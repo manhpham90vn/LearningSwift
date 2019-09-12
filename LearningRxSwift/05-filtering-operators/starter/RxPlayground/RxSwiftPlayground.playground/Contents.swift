@@ -84,6 +84,18 @@ example(of: "skipUntil") {
     subject.onNext("Ngan")
 }
 
+example(of: "take") {
+    let bag = DisposeBag()
+    
+    Observable
+        .of(1, 2, 3, 4, 5, 6)
+        .take(2)
+        .subscribe({ (event) in
+            print(event)
+        })
+        .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
