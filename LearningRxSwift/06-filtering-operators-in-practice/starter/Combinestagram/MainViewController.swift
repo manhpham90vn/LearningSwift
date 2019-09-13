@@ -35,6 +35,8 @@ class MainViewController: UIViewController {
   private let bag = DisposeBag()
   private let images = BehaviorRelay<[UIImage]>(value: [])
 
+  private var imageCache = [Int]()
+  
   @IBOutlet weak var imagePreview: UIImageView!
   @IBOutlet weak var buttonClear: UIButton!
   @IBOutlet weak var buttonSave: UIButton!
@@ -67,6 +69,7 @@ class MainViewController: UIViewController {
 
   @IBAction func actionClear() {
     images.accept([])
+    imageCache = []
   }
 
   @IBAction func actionSave() {
@@ -90,7 +93,24 @@ class MainViewController: UIViewController {
     let photosViewController = storyboard!.instantiateViewController(
       withIdentifier: "PhotosViewController") as! PhotosViewController
 
-    photosViewController.selectedPhotos
+    let newPhotos = photosViewController.selectedPhotos.share()
+    
+    newPhotos
+      .filter({ (newImage) -> Bool in
+        return newImage.size.width > newImage.size.height
+      })
+      .filter({ [weak self] (newImage) -> Bool in
+        let len = newImage.pngData()?.count ?? 0
+        guard self?.imageCache.contains(len) == false else {
+          return false
+        }
+        self?.imageCache.append(len)
+        return true
+      })
+      .takeWhile({ [weak self] (image) -> Bool in
+        let count = self?.images.value.count ?? 0
+        return count < 6
+      })
       .subscribe(onNext: { [weak self] newImage in
         guard let images = self?.images else { return }
         images.accept(images.value + [newImage])
@@ -99,6 +119,13 @@ class MainViewController: UIViewController {
       })
       .disposed(by: bag)
 
+    newPhotos
+      .ignoreElements()
+      .subscribe(onCompleted: { [weak self] in
+        self?.updateNavigationIcon()
+      })
+      .disposed(by: bag)
+    
     navigationController!.pushViewController(photosViewController, animated: true)
 
   }
@@ -108,4 +135,13 @@ class MainViewController: UIViewController {
       .subscribe()
       .disposed(by: bag)
   }
+  
+  private func updateNavigationIcon() {
+    let icon = imagePreview.image?
+      .scaled(CGSize(width: 22, height: 22))
+      .withRenderingMode(.alwaysOriginal)
+    navigationItem.leftBarButtonItem = UIBarButtonItem(image: icon,
+                                                       style: .done, target: nil, action: nil)
+  }
+  
 }
