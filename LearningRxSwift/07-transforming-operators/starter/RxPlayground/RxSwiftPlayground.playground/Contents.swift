@@ -1,7 +1,16 @@
 import Foundation
 import RxSwift
 
-
+example(of: "toArray") {
+    let bag = DisposeBag()
+    
+    Observable.of(1, 2, 3, 4, 5)
+        .toArray()
+        .subscribe(onNext: { (element) in
+            print(element)
+        })
+        .disposed(by: bag)
+}
 
 /*:
  Copyright (c) 2019 Razeware LLC
