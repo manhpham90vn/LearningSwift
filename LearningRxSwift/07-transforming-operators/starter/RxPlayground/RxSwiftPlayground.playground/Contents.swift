@@ -12,6 +12,17 @@ example(of: "toArray") {
         .disposed(by: bag)
 }
 
+example(of: "map") {
+    let bag = DisposeBag()
+    
+    Observable.of(1, 2, 3, 4, 5)
+        .map({ $0 * 2 })
+        .subscribe(onNext: { (element) in
+            print(element)
+        })
+        .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
