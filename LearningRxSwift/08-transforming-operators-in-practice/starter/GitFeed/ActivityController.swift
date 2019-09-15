@@ -62,11 +62,43 @@ class ActivityController: UITableViewController {
   }
 
   func fetchEvents(repo: String) {
-
+    let response = Observable
+      .from([repo])
+      .map({ URL(string: "https://api.github.com/repos/\($0)/events") })
+      .filter({ $0 != nil })
+      .map({ $0! })
+      .map({ URLRequest(url: $0) })
+      .flatMap { (request) -> Observable<(response: HTTPURLResponse, data: Data)> in
+        return URLSession.shared.rx.response(request: request)
+      }
+      .share(replay: 1, scope: .whileConnected)
+    
+    response
+      .filter { (response, _) -> Bool in
+      return 200..<300 ~= response.statusCode
+      }
+      .map { (_, data) -> [Event] in
+        let decoder = JSONDecoder()
+        let events = try? decoder.decode([Event].self, from: data)
+        return events ?? []
+      }
+      .filter({ !$0.isEmpty })
+      .subscribe(onNext: { [weak self] (newEvents) in
+        self?.processEvents(newEvents)
+      })
+      .disposed(by: bag)
   }
   
   func processEvents(_ newEvents: [Event]) {
-    
+    var updatedEvents = newEvents + events.value
+    if updatedEvents.count > 50 {
+      updatedEvents = [Event](updatedEvents.prefix(upTo: 50))
+    }
+    events.accept(updatedEvents)
+    DispatchQueue.main.async {
+      self.tableView.reloadData()
+      self.refreshControl?.endRefreshing()
+    }
   }
 
   // MARK: - Table Data Source
