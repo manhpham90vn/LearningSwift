@@ -60,6 +60,28 @@ example(of: "flatMap") {
     charlotte.score.onNext(100)
 }
 
+example(of: "flatMapLatest") {
+    let bag = DisposeBag()
+    
+    let laura = Student(score: BehaviorSubject(value: 80))
+    let charlotte = Student(score: BehaviorSubject(value: 90))
+    let student = PublishSubject<Student>()
+    
+    student
+        .flatMapLatest({ $0.score })
+        .subscribe(onNext: { (element) in
+            print(element)
+        })
+        .disposed(by: bag)
+    
+    student.onNext(laura)
+    laura.score.onNext(85)
+    student.onNext(charlotte)
+    
+    laura.score.onNext(95)
+    charlotte.score.onNext(100)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
