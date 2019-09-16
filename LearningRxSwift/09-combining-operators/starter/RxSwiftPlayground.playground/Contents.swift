@@ -5,14 +5,15 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 
 // Start coding here!
 example(of: "startWith") {
-  // 1
-  let numbers = Observable.of(2, 3, 4)
+    
+  let bag = DisposeBag()
 
-  // 2
-  let observable = numbers.startWith(1)
-  _ = observable.subscribe(onNext: { value in
+  Observable.of(2, 3, 4)
+    .startWith(1)
+    .subscribe(onNext: { value in
     print(value)
-  })
+    })
+    .disposed(by: bag)
 }
 
 /*:
