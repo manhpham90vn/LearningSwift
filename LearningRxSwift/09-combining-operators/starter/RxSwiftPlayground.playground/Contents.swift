@@ -42,6 +42,22 @@ example(of: "concat") {
         .disposed(by: bag)
 }
 
+example(of: "concatMap") {
+    let bag = DisposeBag()
+    
+    let first = Observable.of(1, 2, 3)
+    let second = Observable.of(4, 5, 6, 7)
+    
+    first
+        .concatMap({ (element) -> Observable<Int> in
+            return second
+        })
+        .subscribe(onNext: { (element) in
+            print(element)
+        })
+        .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
