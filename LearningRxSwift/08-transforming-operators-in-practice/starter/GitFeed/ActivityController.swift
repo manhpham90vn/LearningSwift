@@ -33,10 +33,21 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
+func cachedFileURL(_ fileName: String) -> URL {
+  return FileManager.default
+    .urls(for: .cachesDirectory, in: .allDomainsMask)
+    .first!
+    .appendingPathComponent(fileName)
+}
+
 class ActivityController: UITableViewController {
+  
   private let repo = "ReactiveX/RxSwift"
+  private let eventsFileURL = cachedFileURL("events.json")
+  private let modifiedFileURL = cachedFileURL("modified.txt")
 
   private let events = BehaviorRelay<[Event]>(value: [])
+  private let lastModified = BehaviorRelay<String?>(value: nil)
   private let bag = DisposeBag()
 
   override func viewDidLoad() {
@@ -52,6 +63,15 @@ class ActivityController: UITableViewController {
     refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
     refresh()
+    
+    let decoder = JSONDecoder()
+    if let eventsData = try? Data(contentsOf: eventsFileURL), let persistedEvents = try? decoder.decode([Event].self, from: eventsData) {
+      events.accept(persistedEvents)
+    }
+    
+    if let lastModifiedString = try? String(contentsOf: modifiedFileURL, encoding: .utf8) {
+      lastModified.accept(lastModifiedString)
+    }
   }
 
   @objc func refresh() {
@@ -67,7 +87,13 @@ class ActivityController: UITableViewController {
       .map({ URL(string: "https://api.github.com/repos/\($0)/events") })
       .filter({ $0 != nil })
       .map({ $0! })
-      .map({ URLRequest(url: $0) })
+      .map({ [weak self] (url) -> URLRequest in
+      var request = URLRequest(url: url)
+      if let modifiedHeader = self?.lastModified.value {
+        request.addValue(modifiedHeader, forHTTPHeaderField: "Last-Modified")
+      }
+      return request
+      })
       .flatMap { (request) -> Observable<(response: HTTPURLResponse, data: Data)> in
         return URLSession.shared.rx.response(request: request)
       }
@@ -87,6 +113,23 @@ class ActivityController: UITableViewController {
         self?.processEvents(newEvents)
       })
       .disposed(by: bag)
+    
+    response
+      .filter { (response, _) -> Bool in
+        return 200..<400 ~= response.statusCode
+      }
+      .flatMap { (response, _) -> Observable<String> in
+        guard let value = response.allHeaderFields["Last-Modified"] as? String else {
+          return Observable.empty()
+        }
+        return Observable.just(value)
+      }
+      .subscribe(onNext: { [weak self] (modifiedHeader) in
+        guard let self = self else { return }
+        self.lastModified.accept(modifiedHeader)
+        try? modifiedHeader.write(to: self.modifiedFileURL, atomically: true, encoding: .utf8)
+      })
+      .disposed(by: bag)
   }
   
   func processEvents(_ newEvents: [Event]) {
@@ -98,6 +141,10 @@ class ActivityController: UITableViewController {
     DispatchQueue.main.async {
       self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
+    }
+    let encoder = JSONEncoder()
+    if let eventsData = try? encoder.encode(updatedEvents) {
+      try? eventsData.write(to: eventsFileURL, options: .atomicWrite)
     }
   }
 
