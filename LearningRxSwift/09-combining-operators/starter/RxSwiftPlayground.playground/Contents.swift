@@ -152,6 +152,24 @@ example(of: "withLatestFrom") {
     button.onNext(())
 }
 
+example(of: "sample") {
+    let button = PublishSubject<Void>()
+    let textField = PublishSubject<String>()
+    let bag = DisposeBag()
+    
+    textField.sample(button)
+        .subscribe(onNext: { (value) in
+            print(value)
+        })
+        .disposed(by: bag)
+    
+    textField.onNext("Par")
+    textField.onNext("Pari")
+    textField.onNext("Paris")
+    button.onNext(())
+    button.onNext(())
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
