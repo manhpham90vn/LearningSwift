@@ -227,6 +227,17 @@ example(of: "reduce") {
         .disposed(by: bag)
 }
 
+example(of: "scan") {
+    let bag = DisposeBag()
+    
+    Observable.of(1, 2, 3, 4, 5)
+        .scan(0, accumulator: +)
+        .subscribe(onNext: { (element) in
+            print(element)
+        })
+        .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
