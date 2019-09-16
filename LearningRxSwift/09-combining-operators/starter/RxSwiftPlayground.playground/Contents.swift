@@ -216,6 +216,17 @@ example(of: "switchLatest") {
     disposable.dispose()
 }
 
+example(of: "reduce") {
+    let bag = DisposeBag()
+    
+    Observable.of(1, 2, 3, 4, 5)
+        .reduce(0, accumulator: +)
+        .subscribe(onNext: { (element) in
+            print(element)
+        })
+        .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
