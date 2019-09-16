@@ -76,6 +76,26 @@ example(of: "merge") {
     left.onNext("Van")
 }
 
+example(of: "combineLatest") {
+    let left = PublishSubject<String>()
+    let right = PublishSubject<String>()
+    let bag = DisposeBag()
+    
+    Observable
+        .combineLatest(left, right) { leftValue, rightValue in
+            return "\(leftValue) \(rightValue)"
+        }
+        .subscribe(onNext: { (element) in
+            print(element)
+        })
+        .disposed(by: bag)
+    
+    left.onNext("Manh")
+    right.onNext("Bui")
+    left.onNext("Pham")
+    left.onNext("Van")
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
