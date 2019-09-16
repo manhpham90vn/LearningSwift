@@ -96,6 +96,23 @@ example(of: "combineLatest") {
     left.onNext("Van")
 }
 
+example(of: "combine user choice and value") {
+    let choice: Observable<DateFormatter.Style> = Observable.of(.short, .long)
+    let dates = Observable.of(Date())
+    let bag = DisposeBag()
+    
+    Observable
+        .combineLatest(choice, dates) { format, when -> String in
+            let formatter = DateFormatter()
+            formatter.dateStyle = format
+            return formatter.string(from: when)
+        }
+        .subscribe(onNext: { value in
+            print(value)
+        })
+        .disposed(by: bag)
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
