@@ -170,6 +170,24 @@ example(of: "sample") {
     button.onNext(())
 }
 
+example(of: "amb") {
+    let right = PublishSubject<String>()
+    let left = PublishSubject<String>()
+    let bag = DisposeBag()
+    
+    left.amb(right)
+        .subscribe(onNext: { (element) in
+            print(element)
+        })
+        .disposed(by: bag)
+    
+    left.onNext("Manh")
+    right.onNext("Ngan")
+    left.onNext("Pham")
+    left.onNext("Van")
+    right.onNext("Bui")
+}
+
 /*:
  Copyright (c) 2019 Razeware LLC
 
