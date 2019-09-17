@@ -4,12 +4,42 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 
 // Start coding here!
 example(of: "scan") {
-  let source = Observable.of(1, 3, 5, 7, 9)
-
-  let observable = source.scan(0, accumulator: +)
-  _ = observable.subscribe(onNext: { value in
+    
+    let bag = DisposeBag()
+    
+  Observable.of(1, 3, 5, 7, 9)
+    .scan(0, accumulator: +)
+    .subscribe(onNext: { value in
     print(value)
-  })
+    })
+    .disposed(by: bag)
+    
+}
+
+example(of: "Challenge 1 - solution using zip") {
+    let source = Observable.of(1, 3, 5, 7, 9)
+    let bag = DisposeBag()
+    
+    let scanObservable = source.scan(0, accumulator: +)
+    let observable = Observable.zip(source, scanObservable)
+    
+    observable.subscribe(onNext: { tuple in
+        print("Value = \(tuple.0)   Running total = \(tuple.1)")
+    })
+    .disposed(by: bag)
+}
+
+example(of: "Challenge 1 - solution using just scan and a tuple") {
+    let source = Observable.of(1, 3, 5, 7, 9)
+    let bag = DisposeBag()
+    
+    source.scan((0, 0)) { acc, current in
+        return (current, acc.1 + current)
+    }
+    .subscribe(onNext: { tuple in
+        print("Value = \(tuple.0)   Running total = \(tuple.1)")
+    })
+    .disposed(by: bag)
 }
 
 /*:
