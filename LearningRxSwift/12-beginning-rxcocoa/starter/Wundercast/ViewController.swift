@@ -31,6 +31,9 @@ import RxSwift
 import RxCocoa
 
 class ViewController: UIViewController {
+    
+  private let bag = DisposeBag()
+    
   @IBOutlet private var searchCityName: UITextField!
   @IBOutlet private var tempLabel: UILabel!
   @IBOutlet private var humidityLabel: UILabel!
@@ -42,6 +45,32 @@ class ViewController: UIViewController {
     // Do any additional setup after loading the view, typically from a nib.
 
     style()
+    
+    let search = searchCityName
+        .rx
+        .controlEvent(.editingDidEndOnExit)
+        .map({ self.searchCityName.text ?? "" })
+        .filter({ !$0.isEmpty })
+        .flatMap({
+            ApiController.shared.currentWeather(city: $0)
+            .catchErrorJustReturn(ApiController.Weather.empty)
+        })
+        .asDriver(onErrorJustReturn: ApiController.Weather.empty)
+        
+       search.map { "\($0.temperature)° C" }
+            .drive(tempLabel.rx.text)
+            .disposed(by: bag)
+        
+        search.map { $0.icon }
+            .drive(iconLabel.rx.text)
+            .disposed(by: bag)
+        search.map { "\($0.humidity)%" }
+            .drive(humidityLabel.rx.text)
+            .disposed(by: bag)
+        search.map { $0.cityName }
+            .drive(cityNameLabel.rx.text)
+            .disposed(by: bag)
+
   }
 
   override func viewDidAppear(_ animated: Bool) {
