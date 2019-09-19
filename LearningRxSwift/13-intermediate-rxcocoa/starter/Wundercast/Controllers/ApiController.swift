@@ -111,7 +111,7 @@ class ApiController {
 
   /// The api key to communicate with openweathermap.org
   /// Create you own on https://home.openweathermap.org/users/sign_up
-  private let apiKey = "<#Your Key#>"
+  private let apiKey = "7512b74f668d84af5e08870cecfd8d43"
 
   /// API base URL
   let baseURL = URL(string: "http://api.openweathermap.org/data/2.5")!
@@ -148,7 +148,7 @@ class ApiController {
   private func buildRequest(method: String = "GET", pathComponent: String, params: [(String, String)]) -> Observable<Data> {
     let url = baseURL.appendingPathComponent(pathComponent)
     var request = URLRequest(url: url)
-    let keyQueryItem = URLQueryItem(name: "appid", value: apiKey)
+    let keyQueryItem = URLQueryItem(name: "APPID", value: apiKey)
     let unitsQueryItem = URLQueryItem(name: "units", value: "metric")
     let urlComponents = NSURLComponents(url: url, resolvingAgainstBaseURL: true)!
 
