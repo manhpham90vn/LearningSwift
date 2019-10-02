@@ -1,4 +1,4 @@
-public enum Event<Element> {
+enum Event<Element> {
     case next(Element)
     case error(Error)
     case completed

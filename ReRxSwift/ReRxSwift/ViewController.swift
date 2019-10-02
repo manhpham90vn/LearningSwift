@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         Observable<Int>.init { (observer) -> Disposable in
             observer.on(event: .next(1))
             observer.on(event: .next(2))
+            observer.on(event: .next(3))
             observer.on(event: .completed)
             return AnonimousDisposable.init {
                 print("disposed")

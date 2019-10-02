@@ -7,11 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB4DD22623439BF500107665 /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22123439BF500107665 /* Disposable.swift */; };
-		BB4DD22723439BF500107665 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22223439BF500107665 /* Observer.swift */; };
 		BB4DD22823439BF500107665 /* Sink.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22323439BF500107665 /* Sink.swift */; };
 		BB4DD22923439BF500107665 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22423439BF500107665 /* Event.swift */; };
-		BB4DD22A23439BF500107665 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22523439BF500107665 /* Observable.swift */; };
+		BB4DD22D23445D5400107665 /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22C23445D5400107665 /* Disposable.swift */; };
+		BB4DD22F23445D7400107665 /* ObservableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22E23445D7400107665 /* ObservableType.swift */; };
+		BB4DD23123445DD400107665 /* ObserverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD23023445DD400107665 /* ObserverType.swift */; };
+		BB4DD23423445E1000107665 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD23323445E1000107665 /* Observable.swift */; };
+		BB4DD23623445E3700107665 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD23523445E3700107665 /* Just.swift */; };
+		BB4DD23823445E6F00107665 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD23723445E6F00107665 /* Map.swift */; };
+		BB4DD23A23445E9D00107665 /* FlatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD23923445E9D00107665 /* FlatMap.swift */; };
+		BB4DD23D23445F1D00107665 /* AnonimousDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD23C23445F1D00107665 /* AnonimousDisposable.swift */; };
+		BB4DD23F23445F4A00107665 /* CompositeDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD23E23445F4A00107665 /* CompositeDisposable.swift */; };
+		BB4DD24123445F6300107665 /* NopeDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD24023445F6300107665 /* NopeDisposable.swift */; };
+		BB4DD24423445FB100107665 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD24323445FB100107665 /* Observer.swift */; };
+		BB4DD24623445FCD00107665 /* AnyObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD24523445FCD00107665 /* AnyObserver.swift */; };
 		BB8F5286234255EB00BA9A19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F5285234255EB00BA9A19 /* AppDelegate.swift */; };
 		BB8F528A234255EB00BA9A19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F5289234255EB00BA9A19 /* ViewController.swift */; };
 		BB8F528F234255ED00BA9A19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8F528E234255ED00BA9A19 /* Assets.xcassets */; };
@@ -20,11 +29,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BB4DD22123439BF500107665 /* Disposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disposable.swift; sourceTree = "<group>"; };
-		BB4DD22223439BF500107665 /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		BB4DD22323439BF500107665 /* Sink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sink.swift; sourceTree = "<group>"; };
 		BB4DD22423439BF500107665 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		BB4DD22523439BF500107665 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		BB4DD22C23445D5400107665 /* Disposable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disposable.swift; sourceTree = "<group>"; };
+		BB4DD22E23445D7400107665 /* ObservableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableType.swift; sourceTree = "<group>"; };
+		BB4DD23023445DD400107665 /* ObserverType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverType.swift; sourceTree = "<group>"; };
+		BB4DD23323445E1000107665 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		BB4DD23523445E3700107665 /* Just.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just.swift; sourceTree = "<group>"; };
+		BB4DD23723445E6F00107665 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		BB4DD23923445E9D00107665 /* FlatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatMap.swift; sourceTree = "<group>"; };
+		BB4DD23C23445F1D00107665 /* AnonimousDisposable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonimousDisposable.swift; sourceTree = "<group>"; };
+		BB4DD23E23445F4A00107665 /* CompositeDisposable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeDisposable.swift; sourceTree = "<group>"; };
+		BB4DD24023445F6300107665 /* NopeDisposable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NopeDisposable.swift; sourceTree = "<group>"; };
+		BB4DD24323445FB100107665 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		BB4DD24523445FCD00107665 /* AnyObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObserver.swift; sourceTree = "<group>"; };
 		BB8F5282234255EB00BA9A19 /* ReRxSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReRxSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8F5285234255EB00BA9A19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB8F5289234255EB00BA9A19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +63,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB4DD22B23445D3A00107665 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				BB4DD22423439BF500107665 /* Event.swift */,
+				BB4DD22C23445D5400107665 /* Disposable.swift */,
+				BB4DD22E23445D7400107665 /* ObservableType.swift */,
+				BB4DD23023445DD400107665 /* ObserverType.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		BB4DD23223445DF400107665 /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				BB4DD23323445E1000107665 /* Observable.swift */,
+				BB4DD23523445E3700107665 /* Just.swift */,
+				BB4DD23723445E6F00107665 /* Map.swift */,
+				BB4DD23923445E9D00107665 /* FlatMap.swift */,
+			);
+			path = Observable;
+			sourceTree = "<group>";
+		};
+		BB4DD23B23445F0000107665 /* Disposable */ = {
+			isa = PBXGroup;
+			children = (
+				BB4DD23C23445F1D00107665 /* AnonimousDisposable.swift */,
+				BB4DD23E23445F4A00107665 /* CompositeDisposable.swift */,
+				BB4DD24023445F6300107665 /* NopeDisposable.swift */,
+				BB4DD22323439BF500107665 /* Sink.swift */,
+			);
+			path = Disposable;
+			sourceTree = "<group>";
+		};
+		BB4DD24223445F9700107665 /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				BB4DD24323445FB100107665 /* Observer.swift */,
+				BB4DD24523445FCD00107665 /* AnyObserver.swift */,
+			);
+			path = Observer;
+			sourceTree = "<group>";
+		};
 		BB8F5279234255EB00BA9A19 = {
 			isa = PBXGroup;
 			children = (
@@ -78,11 +138,10 @@
 		BB8F529B2342579400BA9A19 /* RxSwift */ = {
 			isa = PBXGroup;
 			children = (
-				BB4DD22123439BF500107665 /* Disposable.swift */,
-				BB4DD22423439BF500107665 /* Event.swift */,
-				BB4DD22523439BF500107665 /* Observable.swift */,
-				BB4DD22223439BF500107665 /* Observer.swift */,
-				BB4DD22323439BF500107665 /* Sink.swift */,
+				BB4DD22B23445D3A00107665 /* Core */,
+				BB4DD23223445DF400107665 /* Observable */,
+				BB4DD24223445F9700107665 /* Observer */,
+				BB4DD23B23445F0000107665 /* Disposable */,
 			);
 			path = RxSwift;
 			sourceTree = "<group>";
@@ -157,14 +216,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB4DD22A23439BF500107665 /* Observable.swift in Sources */,
+				BB4DD22D23445D5400107665 /* Disposable.swift in Sources */,
 				BB8F528A234255EB00BA9A19 /* ViewController.swift in Sources */,
-				BB4DD22723439BF500107665 /* Observer.swift in Sources */,
+				BB4DD23423445E1000107665 /* Observable.swift in Sources */,
+				BB4DD22F23445D7400107665 /* ObservableType.swift in Sources */,
 				BB4DD22823439BF500107665 /* Sink.swift in Sources */,
-				BB4DD22623439BF500107665 /* Disposable.swift in Sources */,
+				BB4DD24423445FB100107665 /* Observer.swift in Sources */,
+				BB4DD23123445DD400107665 /* ObserverType.swift in Sources */,
+				BB4DD24623445FCD00107665 /* AnyObserver.swift in Sources */,
+				BB4DD23A23445E9D00107665 /* FlatMap.swift in Sources */,
+				BB4DD24123445F6300107665 /* NopeDisposable.swift in Sources */,
 				BB8F5286234255EB00BA9A19 /* AppDelegate.swift in Sources */,
+				BB4DD23823445E6F00107665 /* Map.swift in Sources */,
 				BB4DD22923439BF500107665 /* Event.swift in Sources */,
 				BB8F529A2342571100BA9A19 /* SceneDelegate.swift in Sources */,
+				BB4DD23F23445F4A00107665 /* CompositeDisposable.swift in Sources */,
+				BB4DD23623445E3700107665 /* Just.swift in Sources */,
+				BB4DD23D23445F1D00107665 /* AnonimousDisposable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
