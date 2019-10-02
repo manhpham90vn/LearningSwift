@@ -14,6 +14,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        Observable<Int>.init { (observer) -> Disposable in
+            observer.on(event: .next(1))
+            observer.on(event: .next(2))
+            observer.on(event: .completed)
+            return AnonimousDisposable.init {
+                print("disposed")
+            }
+        }
+        .map({ $0 * 10 })
+        .subscribe { (event) in
+            print(event)
+        }.dispose()
+        
     }
 
 

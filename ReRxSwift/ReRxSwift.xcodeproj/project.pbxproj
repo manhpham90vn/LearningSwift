@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB4DD22623439BF500107665 /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22123439BF500107665 /* Disposable.swift */; };
+		BB4DD22723439BF500107665 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22223439BF500107665 /* Observer.swift */; };
+		BB4DD22823439BF500107665 /* Sink.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22323439BF500107665 /* Sink.swift */; };
+		BB4DD22923439BF500107665 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22423439BF500107665 /* Event.swift */; };
+		BB4DD22A23439BF500107665 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DD22523439BF500107665 /* Observable.swift */; };
 		BB8F5286234255EB00BA9A19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F5285234255EB00BA9A19 /* AppDelegate.swift */; };
 		BB8F528A234255EB00BA9A19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F5289234255EB00BA9A19 /* ViewController.swift */; };
 		BB8F528F234255ED00BA9A19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8F528E234255ED00BA9A19 /* Assets.xcassets */; };
 		BB8F5292234255ED00BA9A19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB8F5290234255ED00BA9A19 /* LaunchScreen.storyboard */; };
 		BB8F529A2342571100BA9A19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F52992342571100BA9A19 /* SceneDelegate.swift */; };
-		BB8F529D234257A800BA9A19 /* ObservableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F529C234257A800BA9A19 /* ObservableType.swift */; };
-		BB8F529F2342581900BA9A19 /* ObserverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F529E2342581900BA9A19 /* ObserverType.swift */; };
-		BB8F52A12342583C00BA9A19 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F52A02342583C00BA9A19 /* Event.swift */; };
-		BB8F52A32342587500BA9A19 /* Disposable .swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F52A22342587500BA9A19 /* Disposable .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB4DD22123439BF500107665 /* Disposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disposable.swift; sourceTree = "<group>"; };
+		BB4DD22223439BF500107665 /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		BB4DD22323439BF500107665 /* Sink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sink.swift; sourceTree = "<group>"; };
+		BB4DD22423439BF500107665 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		BB4DD22523439BF500107665 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		BB8F5282234255EB00BA9A19 /* ReRxSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReRxSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8F5285234255EB00BA9A19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB8F5289234255EB00BA9A19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,10 +32,6 @@
 		BB8F5291234255ED00BA9A19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB8F5293234255ED00BA9A19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB8F52992342571100BA9A19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BB8F529C234257A800BA9A19 /* ObservableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableType.swift; sourceTree = "<group>"; };
-		BB8F529E2342581900BA9A19 /* ObserverType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverType.swift; sourceTree = "<group>"; };
-		BB8F52A02342583C00BA9A19 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		BB8F52A22342587500BA9A19 /* Disposable .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disposable .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,10 +78,11 @@
 		BB8F529B2342579400BA9A19 /* RxSwift */ = {
 			isa = PBXGroup;
 			children = (
-				BB8F529C234257A800BA9A19 /* ObservableType.swift */,
-				BB8F529E2342581900BA9A19 /* ObserverType.swift */,
-				BB8F52A02342583C00BA9A19 /* Event.swift */,
-				BB8F52A22342587500BA9A19 /* Disposable .swift */,
+				BB4DD22123439BF500107665 /* Disposable.swift */,
+				BB4DD22423439BF500107665 /* Event.swift */,
+				BB4DD22523439BF500107665 /* Observable.swift */,
+				BB4DD22223439BF500107665 /* Observer.swift */,
+				BB4DD22323439BF500107665 /* Sink.swift */,
 			);
 			path = RxSwift;
 			sourceTree = "<group>";
@@ -154,12 +157,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB4DD22A23439BF500107665 /* Observable.swift in Sources */,
 				BB8F528A234255EB00BA9A19 /* ViewController.swift in Sources */,
-				BB8F529F2342581900BA9A19 /* ObserverType.swift in Sources */,
+				BB4DD22723439BF500107665 /* Observer.swift in Sources */,
+				BB4DD22823439BF500107665 /* Sink.swift in Sources */,
+				BB4DD22623439BF500107665 /* Disposable.swift in Sources */,
 				BB8F5286234255EB00BA9A19 /* AppDelegate.swift in Sources */,
-				BB8F529D234257A800BA9A19 /* ObservableType.swift in Sources */,
-				BB8F52A12342583C00BA9A19 /* Event.swift in Sources */,
-				BB8F52A32342587500BA9A19 /* Disposable .swift in Sources */,
+				BB4DD22923439BF500107665 /* Event.swift in Sources */,
 				BB8F529A2342571100BA9A19 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
